@@ -20,7 +20,6 @@ namespace machidesignAPI.Models
         public string InsAccountId { get; set; }
         public string UpdAccountId { get; set; }
         public string YukoFlg { get; set; }
-    
-        public virtual Events Events { get; set; }
+        public Nullable<long> Events_EventsId { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace machidesignAPI.Models
     
     public partial class Accounts
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Accounts()
-        {
-            this.MachiarukiDatas = new HashSet<MachiarukiDatas>();
-        }
-    
         public string AccountId { get; set; }
         public System.DateTime InsDate { get; set; }
         public System.DateTime UpdDate { get; set; }
@@ -33,8 +27,5 @@ namespace machidesignAPI.Models
         public string FirstName { get; set; }
         public string LastNameK { get; set; }
         public string FirstNameK { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MachiarukiDatas> MachiarukiDatas { get; set; }
     }
 }

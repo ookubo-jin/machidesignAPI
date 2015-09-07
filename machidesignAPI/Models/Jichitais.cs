@@ -14,12 +14,6 @@ namespace machidesignAPI.Models
     
     public partial class Jichitais
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Jichitais()
-        {
-            this.Groups = new HashSet<Groups>();
-        }
-    
         public string JichitaiId { get; set; }
         public System.DateTime InsDate { get; set; }
         public System.DateTime UpdDate { get; set; }
@@ -27,8 +21,5 @@ namespace machidesignAPI.Models
         public string UpdAccountId { get; set; }
         public string YukoFlg { get; set; }
         public string JichitaiName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groups> Groups { get; set; }
     }
 }

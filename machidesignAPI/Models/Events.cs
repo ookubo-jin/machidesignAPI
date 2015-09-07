@@ -14,19 +14,13 @@ namespace machidesignAPI.Models
     
     public partial class Events
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Events()
-        {
-            this.MachiarukiDatas = new HashSet<MachiarukiDatas>();
-            this.Machiarukis = new HashSet<Machiarukis>();
-        }
-    
         public long EventsId { get; set; }
         public System.DateTime InsDate { get; set; }
         public System.DateTime UpdDate { get; set; }
         public string InsAccountId { get; set; }
         public string UpdAccountId { get; set; }
         public string YukoFlg { get; set; }
+        public long GroupId { get; set; }
         public string EventName { get; set; }
         public System.DateTime KaisaiDate_Start { get; set; }
         public string KaisaiTime_Start { get; set; }
@@ -40,11 +34,5 @@ namespace machidesignAPI.Models
         public int MaxNinzu { get; set; }
         public decimal Kaihi { get; set; }
         public string KaihiBiko { get; set; }
-    
-        public virtual Groups Groups { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MachiarukiDatas> MachiarukiDatas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Machiarukis> Machiarukis { get; set; }
     }
 }

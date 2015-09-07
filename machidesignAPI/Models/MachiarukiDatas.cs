@@ -20,6 +20,8 @@ namespace machidesignAPI.Models
         public string InsAccountId { get; set; }
         public string UpdAccountId { get; set; }
         public string YukoFlg { get; set; }
+        public long EventsId { get; set; }
+        public string AccountId { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public double Altitude { get; set; }
@@ -27,8 +29,5 @@ namespace machidesignAPI.Models
         public double AltitudeAccuracy { get; set; }
         public double Heading { get; set; }
         public double Speed { get; set; }
-    
-        public virtual Accounts Accounts { get; set; }
-        public virtual Events Events { get; set; }
     }
 }

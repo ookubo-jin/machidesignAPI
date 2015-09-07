@@ -15,10 +15,10 @@ namespace machidesignAPI
             // Web API の設定およびサービス
 
             //http://miso-soup3.hateblo.jp/entry/2013/07/05/065648
-            //config.Formatters.XmlFormatter.AddQueryStringMapping("format", "xml", "application/xml");
-            //config.Formatters.JsonFormatter.AddQueryStringMapping("format", "json", "application/json");
-            config.Formatters.XmlFormatter.AddUriPathExtensionMapping("xml", "application/xml");
-            config.Formatters.JsonFormatter.AddUriPathExtensionMapping("json", "application/json");
+            config.Formatters.XmlFormatter.AddQueryStringMapping("format", "xml", "application/xml");
+            config.Formatters.JsonFormatter.AddQueryStringMapping("format", "json", "application/json");
+            //config.Formatters.XmlFormatter.AddUriPathExtensionMapping("xml", "application/xml");
+            //config.Formatters.JsonFormatter.AddUriPathExtensionMapping("json", "application/json");
 
             //config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

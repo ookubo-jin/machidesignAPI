@@ -109,70 +109,6 @@
           <Property Name="YukoFlg" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="Events_EventsId" Type="bigint" />
         </EntityType>
-        <Association Name="FK_dbo_Events_dbo_Groups_GroupId">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Events" Type="Self.Events" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="GroupId" />
-            </Principal>
-            <Dependent Role="Events">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Groups_dbo_Jichitais_JichitaiId">
-          <End Role="Jichitais" Type="Self.Jichitais" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Jichitais">
-              <PropertyRef Name="JichitaiId" />
-            </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="JichitaiId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId">
-          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
-          <End Role="MachiarukiDatas" Type="Self.MachiarukiDatas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Accounts">
-              <PropertyRef Name="AccountId" />
-            </Principal>
-            <Dependent Role="MachiarukiDatas">
-              <PropertyRef Name="AccountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_MachiarukiDatas_dbo_Events_EventsId">
-          <End Role="Events" Type="Self.Events" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="MachiarukiDatas" Type="Self.MachiarukiDatas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Events">
-              <PropertyRef Name="EventsId" />
-            </Principal>
-            <Dependent Role="MachiarukiDatas">
-              <PropertyRef Name="EventsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Machiarukis_dbo_Events_Events_EventsId">
-          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
-          <End Role="Machiarukis" Type="Self.Machiarukis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Events">
-              <PropertyRef Name="EventsId" />
-            </Principal>
-            <Dependent Role="Machiarukis">
-              <PropertyRef Name="Events_EventsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="machidesignModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
@@ -180,26 +116,6 @@
           <EntitySet Name="Jichitais" EntityType="Self.Jichitais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MachiarukiDatas" EntityType="Self.MachiarukiDatas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Machiarukis" EntityType="Self.Machiarukis" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_dbo_Events_dbo_Groups_GroupId" Association="Self.FK_dbo_Events_dbo_Groups_GroupId">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Events" EntitySet="Events" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Groups_dbo_Jichitais_JichitaiId" Association="Self.FK_dbo_Groups_dbo_Jichitais_JichitaiId">
-            <End Role="Jichitais" EntitySet="Jichitais" />
-            <End Role="Groups" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId" Association="Self.FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="MachiarukiDatas" EntitySet="MachiarukiDatas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_MachiarukiDatas_dbo_Events_EventsId" Association="Self.FK_dbo_MachiarukiDatas_dbo_Events_EventsId">
-            <End Role="Events" EntitySet="Events" />
-            <End Role="MachiarukiDatas" EntitySet="MachiarukiDatas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Machiarukis_dbo_Events_Events_EventsId" Association="Self.FK_dbo_Machiarukis_dbo_Events_Events_EventsId">
-            <End Role="Events" EntitySet="Events" />
-            <End Role="Machiarukis" EntitySet="Machiarukis" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -223,7 +139,6 @@
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastNameK" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="FirstNameK" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MachiarukiDatas" Relationship="Self.FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId" FromRole="Accounts" ToRole="MachiarukiDatas" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -235,6 +150,7 @@
           <Property Name="InsAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="YukoFlg" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupId" Type="Int64" Nullable="false" />
           <Property Name="EventName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="KaisaiDate_Start" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="KaisaiTime_Start" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -248,9 +164,6 @@
           <Property Name="MaxNinzu" Type="Int32" Nullable="false" />
           <Property Name="Kaihi" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="KaihiBiko" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_dbo_Events_dbo_Groups_GroupId" FromRole="Events" ToRole="Groups" />
-          <NavigationProperty Name="MachiarukiDatas" Relationship="Self.FK_dbo_MachiarukiDatas_dbo_Events_EventsId" FromRole="Events" ToRole="MachiarukiDatas" />
-          <NavigationProperty Name="Machiarukis" Relationship="Self.FK_dbo_Machiarukis_dbo_Events_Events_EventsId" FromRole="Events" ToRole="Machiarukis" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -262,13 +175,12 @@
           <Property Name="InsAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="YukoFlg" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JichitaiId" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="GroupName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="HomePege" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="ImageUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="GroupDescription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Events" Relationship="Self.FK_dbo_Events_dbo_Groups_GroupId" FromRole="Groups" ToRole="Events" />
-          <NavigationProperty Name="Jichitais" Relationship="Self.FK_dbo_Groups_dbo_Jichitais_JichitaiId" FromRole="Groups" ToRole="Jichitais" />
         </EntityType>
         <EntityType Name="Jichitais">
           <Key>
@@ -281,7 +193,6 @@
           <Property Name="UpdAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="YukoFlg" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="JichitaiName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_dbo_Groups_dbo_Jichitais_JichitaiId" FromRole="Jichitais" ToRole="Groups" />
         </EntityType>
         <EntityType Name="MachiarukiDatas">
           <Key>
@@ -293,6 +204,8 @@
           <Property Name="InsAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="YukoFlg" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventsId" Type="Int64" Nullable="false" />
+          <Property Name="AccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="Double" Nullable="false" />
           <Property Name="Longitude" Type="Double" Nullable="false" />
           <Property Name="Altitude" Type="Double" Nullable="false" />
@@ -300,8 +213,6 @@
           <Property Name="AltitudeAccuracy" Type="Double" Nullable="false" />
           <Property Name="Heading" Type="Double" Nullable="false" />
           <Property Name="Speed" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId" FromRole="MachiarukiDatas" ToRole="Accounts" />
-          <NavigationProperty Name="Events" Relationship="Self.FK_dbo_MachiarukiDatas_dbo_Events_EventsId" FromRole="MachiarukiDatas" ToRole="Events" />
         </EntityType>
         <EntityType Name="Machiarukis">
           <Key>
@@ -313,32 +224,8 @@
           <Property Name="InsAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdAccountId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="YukoFlg" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Events" Relationship="Self.FK_dbo_Machiarukis_dbo_Events_Events_EventsId" FromRole="Machiarukis" ToRole="Events" />
+          <Property Name="Events_EventsId" Type="Int64" />
         </EntityType>
-        <Association Name="FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId">
-          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
-          <End Role="MachiarukiDatas" Type="Self.MachiarukiDatas" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_dbo_Events_dbo_Groups_GroupId">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Events" Type="Self.Events" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_dbo_MachiarukiDatas_dbo_Events_EventsId">
-          <End Role="Events" Type="Self.Events" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="MachiarukiDatas" Type="Self.MachiarukiDatas" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_dbo_Machiarukis_dbo_Events_Events_EventsId">
-          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
-          <End Role="Machiarukis" Type="Self.Machiarukis" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_dbo_Groups_dbo_Jichitais_JichitaiId">
-          <End Role="Jichitais" Type="Self.Jichitais" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="machidesignEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" />
           <EntitySet Name="Events" EntityType="Self.Events" />
@@ -346,26 +233,6 @@
           <EntitySet Name="Jichitais" EntityType="Self.Jichitais" />
           <EntitySet Name="MachiarukiDatas" EntityType="Self.MachiarukiDatas" />
           <EntitySet Name="Machiarukis" EntityType="Self.Machiarukis" />
-          <AssociationSet Name="FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId" Association="Self.FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="MachiarukiDatas" EntitySet="MachiarukiDatas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Events_dbo_Groups_GroupId" Association="Self.FK_dbo_Events_dbo_Groups_GroupId">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Events" EntitySet="Events" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_MachiarukiDatas_dbo_Events_EventsId" Association="Self.FK_dbo_MachiarukiDatas_dbo_Events_EventsId">
-            <End Role="Events" EntitySet="Events" />
-            <End Role="MachiarukiDatas" EntitySet="MachiarukiDatas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Machiarukis_dbo_Events_Events_EventsId" Association="Self.FK_dbo_Machiarukis_dbo_Events_Events_EventsId">
-            <End Role="Events" EntitySet="Events" />
-            <End Role="Machiarukis" EntitySet="Machiarukis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Groups_dbo_Jichitais_JichitaiId" Association="Self.FK_dbo_Groups_dbo_Jichitais_JichitaiId">
-            <End Role="Jichitais" EntitySet="Jichitais" />
-            <End Role="Groups" EntitySet="Groups" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -401,6 +268,7 @@
                 <ScalarProperty Name="InsAccountId" ColumnName="InsAccountId" />
                 <ScalarProperty Name="UpdAccountId" ColumnName="UpdAccountId" />
                 <ScalarProperty Name="YukoFlg" ColumnName="YukoFlg" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="EventName" ColumnName="EventName" />
                 <ScalarProperty Name="KaisaiDate_Start" ColumnName="KaisaiDate_Start" />
                 <ScalarProperty Name="KaisaiTime_Start" ColumnName="KaisaiTime_Start" />
@@ -426,6 +294,7 @@
                 <ScalarProperty Name="InsAccountId" ColumnName="InsAccountId" />
                 <ScalarProperty Name="UpdAccountId" ColumnName="UpdAccountId" />
                 <ScalarProperty Name="YukoFlg" ColumnName="YukoFlg" />
+                <ScalarProperty Name="JichitaiId" ColumnName="JichitaiId" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="HomePege" ColumnName="HomePege" />
@@ -456,6 +325,8 @@
                 <ScalarProperty Name="InsAccountId" ColumnName="InsAccountId" />
                 <ScalarProperty Name="UpdAccountId" ColumnName="UpdAccountId" />
                 <ScalarProperty Name="YukoFlg" ColumnName="YukoFlg" />
+                <ScalarProperty Name="EventsId" ColumnName="EventsId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Altitude" ColumnName="Altitude" />
@@ -475,52 +346,10 @@
                 <ScalarProperty Name="InsAccountId" ColumnName="InsAccountId" />
                 <ScalarProperty Name="UpdAccountId" ColumnName="UpdAccountId" />
                 <ScalarProperty Name="YukoFlg" ColumnName="YukoFlg" />
+                <ScalarProperty Name="Events_EventsId" ColumnName="Events_EventsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId" TypeName="machidesignModel.FK_dbo_MachiarukiDatas_dbo_Accounts_AccountId" StoreEntitySet="MachiarukiDatas">
-            <EndProperty Name="Accounts">
-              <ScalarProperty Name="AccountId" ColumnName="AccountId" />
-            </EndProperty>
-            <EndProperty Name="MachiarukiDatas">
-              <ScalarProperty Name="MachiarukiDataId" ColumnName="MachiarukiDataId" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="AccountId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_dbo_Events_dbo_Groups_GroupId" TypeName="machidesignModel.FK_dbo_Events_dbo_Groups_GroupId" StoreEntitySet="Events">
-            <EndProperty Name="Groups">
-              <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-            </EndProperty>
-            <EndProperty Name="Events">
-              <ScalarProperty Name="EventsId" ColumnName="EventsId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_dbo_MachiarukiDatas_dbo_Events_EventsId" TypeName="machidesignModel.FK_dbo_MachiarukiDatas_dbo_Events_EventsId" StoreEntitySet="MachiarukiDatas">
-            <EndProperty Name="Events">
-              <ScalarProperty Name="EventsId" ColumnName="EventsId" />
-            </EndProperty>
-            <EndProperty Name="MachiarukiDatas">
-              <ScalarProperty Name="MachiarukiDataId" ColumnName="MachiarukiDataId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_dbo_Machiarukis_dbo_Events_Events_EventsId" TypeName="machidesignModel.FK_dbo_Machiarukis_dbo_Events_Events_EventsId" StoreEntitySet="Machiarukis">
-            <EndProperty Name="Events">
-              <ScalarProperty Name="EventsId" ColumnName="Events_EventsId" />
-            </EndProperty>
-            <EndProperty Name="Machiarukis">
-              <ScalarProperty Name="EventsId" ColumnName="EventsId" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="Events_EventsId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_dbo_Groups_dbo_Jichitais_JichitaiId" TypeName="machidesignModel.FK_dbo_Groups_dbo_Jichitais_JichitaiId" StoreEntitySet="Groups">
-            <EndProperty Name="Jichitais">
-              <ScalarProperty Name="JichitaiId" ColumnName="JichitaiId" />
-            </EndProperty>
-            <EndProperty Name="Groups">
-              <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="JichitaiId" />
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -536,7 +365,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
       </DesignerInfoPropertySet>
